@@ -15,6 +15,7 @@ typedef struct Mascota {
     struct Mascota *izq;
     struct Mascota *der;
     struct Mascota *sig;  // para lista enlazada
+    int height;
 } Mascota;
 
 // ---------------------------------------------
@@ -41,6 +42,7 @@ Mascota *crearMascota(const char *nombre, const char *tipo) {
     strcpy(nueva->nombre, nombre);
     strcpy(nueva->tipo, tipo);
     nueva->izq = nueva->der = nueva->sig = NULL;
+    nueva->height = 1;
     return nueva;
 }
 
@@ -68,6 +70,43 @@ Mascota *insertarABB(Mascota *raiz, const char *nombre, const char *tipo) {
         raiz->der = insertarABB(raiz->der, nombre, tipo);
     return raiz;
 }
+
+// ToDo: implementar inserción balanceada AVL
+Mascota *insertarABB_AVL(Mascota *raiz, const char *nombre, const char *tipo) {
+
+    /* 1.  Realiza la inserción normal */
+    if (raiz == NULL) return crearMascota(nombre, tipo);
+    if (strcmp(nombre, raiz->nombre) < 0)
+        raiz->izq = insertarABB_AVL(raiz->izq, nombre, tipo);
+    else
+        raiz->der = insertarABB_AVL(raiz->der, nombre, tipo);
+    
+
+    /* 2. Calcula la altura máxima de este nodo*/
+    //ToDo implementar función que calcule altura 
+    int 
+
+    /* 3. Obtén el factor de balance del nodo  
+        para verificar si está desbalanceado*/
+    
+    //ToDo implementar función que calcule balance
+    int balance = 0;
+
+    // Si el nodo está desbalanceado, tendremos 4 casos
+
+    // Left Left Case
+    
+    // Right Right Case
+    
+    // Left Right Case
+    
+    // Right Left Case
+
+    /* return el nodo raiz si no hay operación de balanceo*/
+    return raiz;
+}
+
+
 
 // ---------------------------------------------
 // Búsqueda
